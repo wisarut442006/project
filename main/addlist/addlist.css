@@ -185,10 +185,11 @@ h1{
 }
 .input-box{
     display: flex;
-    margin: 50px;
+    margin: 10px;
     flex-direction: column;
 }
-.input-box input{
+.input-box input[type="text"],
+.input-box input[type="date"] {
     height: 40px;
     margin-top: 5px;
     padding-left: 40px;
@@ -198,6 +199,25 @@ h1{
     border: 2px solid #31a035; 
     outline: none;             
     box-shadow: 0 0 5px rgba(49, 160, 53, 0.3); 
+}
+.input-box label {
+    font-weight: bold;
+    color: #444;
+    margin-top: 5px;
+    font-size: 14px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(35%) sepia(85%) saturate(415%) hue-rotate(72deg) brightness(95%) contrast(88%); 
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.2);
 }
 .submit-wrapper{
     display: flex;
@@ -305,4 +325,15 @@ h1{
 .close:hover {
     color: #ff0000;          
     transform: scale(1.5);
+}
+.header .sidebar .menu a{
+    font-size: 18px;
+    margin: 0px 20px;
+    color: rgb(108, 108, 108);
+    text-decoration: none;
+}
+.header .sidebar .menu a:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    color: #001;
 }

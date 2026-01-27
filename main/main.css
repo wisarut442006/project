@@ -393,7 +393,18 @@ header .top-menu .search-box {
     border-radius: 6px;
     font-size: 16px;
 }
-
+#editForm input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    height: 48px;        
+}
+#editForm input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    height: 48px;        
+}
 .save-btn {
     width: 100%;
     padding: 14px;
@@ -457,4 +468,15 @@ header .top-menu .search-box {
     box-shadow:6px 6px 12px #1c6e3e;
     border-radius: 5px ;
     border-color: #1c6e3e;
+}
+.header .sidebar .menu a{
+    font-size: 18px;
+    margin: 0px 20px;
+    color: rgb(108, 108, 108);
+    text-decoration: none;
+}
+.header .sidebar .menu a:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    color: #001;
 }

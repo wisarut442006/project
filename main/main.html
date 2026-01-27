@@ -46,8 +46,8 @@
             <button class="btn-addlist" onclick="addlist()">+ เพิ่มรายการ</button>
         </div>
         <div class="menu">
-            <a href="home">Home</a>
-            <a href="contact">Contact</a>
+            <a href="/home_contact/home.html">home</a>
+            <a href="/home_contact/contact.html">Contact</a>
         </div>
         </div>
         <div class="main-content-area">
@@ -118,15 +118,15 @@
                 <input type="text" id="edit-name" required><br>
                 <label >ประเภทผลิตภัณฑ์:</label>
                 <select name="Category" id="edit-Category">
-                        <optgroup label="อาหาร">
-                            <option value="driedfood">อาหารเเห้ง</option>
-                            <option value="freshfood">อาหารสด</option>
+                        <optgroup label="🍱 อาหาร">
+                            <option value="driedfood">🥫 อาหารเเห้ง</option>
+                            <option value="freshfood">🥩 อาหารสด</option>
                         </optgroup>
-                        <option value="medicine">ยา</option>
-                        <option value="household">ของใช้</option>
+                        <option value="medicine">💊 ยา</option>
+                        <option value="household">🧼 ของใช้</option>
                     </select><br>
                 <label>วันหมดอายุ:</label>
-                <input type="text" id="edit-expiry" placeholder="DD/MM/YYYY" required><br>
+                <input type="date" id="edit-expiry" required><br>
                 <button type="submit" class="save-btn">บันทึกการแก้ไข</button>
                 <button type="button" class="delete-btn" onclick="deleteProduct()">ลบรายการ</button>
             </form>

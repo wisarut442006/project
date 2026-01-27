@@ -58,10 +58,14 @@
             </div>
            
             <div class="input-box">
+                <label >กรอกชื่อผลิตภัณฑ์</label>
                 <input type="text" id="Name" placeholder="กรอกชื่อผลิตภัณฑ์">
-                <input type="text" id="MFG" placeholder="กรอกวันที่ผลิตผลิตภัณฑ์">
-                <input type="text" id="EXP" placeholder="กรอกวันที่หมดอายุผลิตภัณฑ์">
-                <input type="text" id="Activate" placeholder="กรอกวันที่เปิดใช้งาน">
+                <label >กรอกวันที่ผลิตผลิตภัณฑ์:</label>
+                <input type="date" id="MFG" >
+                <label >กรอกวันที่หมดอายุผลิตภัณฑ์:</label>
+                <input type="date" id="EXP" >
+                <label>กรอกวันที่เปิดใช้งาน:</label>
+                <input type="date" id="Activate" >
             </div>
             <div class="submit-wrapper">
                 <button type="button" class="submit" onclick="Submit()">Submit</button>

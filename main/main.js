@@ -178,7 +178,7 @@ function opensetting() {
     document.getElementById("setting-dropdown").classList.toggle("show");
 }
 function btnback() {
-    window.location.href = "../home/home.html"
+    window.location.href = "../home_contact/home.html"
 }
 function filterProducts() {
     const selectedCategory = document.getElementById('Category').value;
@@ -236,7 +236,7 @@ function updateAllCountdowns() {
             const diff = expiryTime - now;
 
             if (isNaN(expiryTime) || diff <= 0) {
-                el.innerHTML = "<span style='color:red; font-weight:bold;'>หมดเวลาแล้ว!</span>";
+                el.innerHTML = "<span style='color:red; font-weight:bold;'>ผลิตภัณฑ์หมดอายุ!</span>";
             } else {
 
                 const d = Math.floor(diff / (1000 * 60 * 60 * 24));

@@ -13,12 +13,14 @@ const pool = mysql.createPool({
 });
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '/login')));
+app.use(express.static(path.join(__dirname, '/home_contact')));
+app.use(express.static(path.join(__dirname, '/setting')));
 app.use(express.static(path.join(__dirname, '/main')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.sendFile(__dirname + '/login/login.html');
+    res.sendFile(__dirname + '/home_contact/home.html');
 }) 
 
 app.listen(port, () =>[
