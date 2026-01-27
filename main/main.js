@@ -36,7 +36,7 @@ let products = [
         id: 2,
         name: "ยาพาราเซตามอล",
         category: "medicine",
-        expiryDate: "30/03/2026",
+        expiryDate: "28/02/2026",
         status: "expirysoon",
         Image: "Image/medicine.jpg"
     },
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts(products);
     updateAllCountdowns();
     setInterval(updateAllCountdowns, 1000);
-    
+
     document.getElementById('editForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     const id = parseInt(document.getElementById('edit-id').value);
