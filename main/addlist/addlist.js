@@ -32,5 +32,16 @@ function Submit() {
     window.location.href = "../main.html"
 }
 function btnback() {
-    window.location.href = "../main.html"
+    window.location.href = "../main/main.html"
 }
+const categoryBox = document.querySelector('.category-box');
+
+categoryBox.addEventListener('click', function() {
+    this.classList.toggle('active');
+});
+
+document.addEventListener('click', function(e) {
+    if (!categoryBox.contains(e.target)) {
+        categoryBox.classList.remove('active');
+    }
+});

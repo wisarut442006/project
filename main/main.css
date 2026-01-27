@@ -45,7 +45,7 @@ h1{
     background-color: #fff;
 }
 .header .sidebar .profile{
-   display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -86,38 +86,103 @@ h1{
     gap: 10vw;
 }
 .header .top-menu .category-box {
+    position: relative;        
     display: inline-flex;
     align-items: center;
-    background-color: #ffffff; 
-    border: 1px solid #999;    
-    padding: 5px 15px;         
-    border-radius: 4px;        
-    cursor: pointer;
+    background-color: #fff;    
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    padding: 0;                
+    overflow: hidden;
+    width: 160px;
+    transition: all 0.3s ease;
+    z-index: 1; 
+}
+.header .top-menu .category-box.active {
+    border: 1px solid #1c6e3e; 
+    box-shadow: 0 0 5px rgba(28, 110, 62, 0.2); 
+    outline: none;
 }
 .header .top-menu .status-box {
+    position: relative;        
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;    
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    padding: 0;                
+    overflow: hidden;
+    width: 160px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.header .top-menu .status-box.active {
+    border: 1px solid #1c6e3e; 
+    box-shadow: 0 0 5px rgba(28, 110, 62, 0.2); 
+    outline: none;
+}
+.header .top-menu select {
+    font-size: 16px;
+    width: 100%;
+    padding: 8px 35px 8px 10px; 
+    background: transparent;
+    appearance: none;          
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    outline: none;
+}
+header .top-menu .search-box {
     display: inline-flex;
     align-items: center;
     background-color: #ffffff; 
     border: 1px solid #999;    
     padding: 5px 15px;         
-    border-radius: 4px;        
-    cursor: pointer;
+    border-radius: 4px;
+    flex: 1; 
+    max-width: 300px; 
 }
-.header .top-menu select {
-    font-size: 20px;
-    width: 120px;
-    background: transparent;
-    appearance: none;
+.header .top-menu .search-box:focus-within {
+    border-color: #4CAF50; 
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3); 
+    transform: scale(1.02); 
+    transition: all 0.2s ease-in-out; 
+}
+
+.header .top-menu .search-box input {
     border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.header .top-menu .search-box .icon {
+    display: flex;
+    align-items: center;
 }
 .header .top-menu .category-box .icon {
-    transition: transform 0.1s ease;
-    margin: 5px;
+    position: absolute;
+    right: 10px;               
+    pointer-events: none;      
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transition:  0.3s ease;
 }
 .header .top-menu .status-box .icon {
-    transition: transform 0.1s ease;
-    margin: 5px;
+    position: absolute;
+    right: 10px;               
+    pointer-events: none;      
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transition:  0.3s ease;
 }
+
 .category-box.active .icon,
 .status-box.active .icon {
     transform: rotate(180deg);

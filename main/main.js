@@ -104,8 +104,8 @@ function editProduct(id) {
         document.getElementById('edit-name').value = product.name;
         document.getElementById('edit-expiry').value = product.expiryDate;
 
-        const categorySelect = document.querySelector('#editModal select');
-        if(categorySelect) categorySelect.value = product.category;
+        const categorySelectEdit = document.getElementById('edit-category');
+        if(categorySelectEdit) categorySelectEdit.value = product.category;
 
         document.getElementById('edit-preview-img').src = product.Image;
         document.getElementById('editModal').style.display = "block";
@@ -181,4 +181,20 @@ window.onclick = function(event) {
 }
 function btnback() {
     window.location.href = "../home/home.html"
+}
+function filterProducts() {
+    const selectedCategory = document.getElementById('Category').value;
+    const selectedStatus = document.getElementById('Status').value;
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase(); 
+
+    const filtered = products.filter(product => {
+        const matchCategory = (selectedCategory === "Category" || product.category === selectedCategory);
+        const matchStatus = (selectedStatus === "Status" || product.status === selectedStatus);
+        
+        const matchSearch = product.name.toLowerCase().includes(searchQuery);
+
+        return matchCategory && matchStatus && matchSearch;
+    });
+    
+    renderProducts(filtered);
 }

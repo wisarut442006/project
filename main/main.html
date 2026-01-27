@@ -60,12 +60,12 @@
                     </span>
                     <select name="Category" id="Category">
                         <option >Category</option>
-                        <optgroup label="อาหาร">
-                            <option value="driedfood">อาหารเเห้ง</option>
-                            <option value="freshfood">อาหารสด</option>
+                        <optgroup label="🍱อาหาร">
+                            <option value="driedfood">🥫 อาหารเเห้ง</option>
+                            <option value="freshfood">🥩 อาหารสด</option>
                         </optgroup>
-                        <option value="medicine">ยา</option>
-                        <option value="household">ของใช้</option>
+                        <option value="medicine">💊 ยา</option>
+                        <option value="household">🧼 ของใช้</option>
                     </select>
                 </div>
             <div class="status-box">
@@ -81,6 +81,15 @@
                 <option value="expired" >🔴 expired</option>
             </select>
             </div>
+            <div class="search-box">
+                    <span class="icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="7" stroke="#717171" stroke-width="1.5"/>
+                    <path d="M20 20L16 16" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="ค้นหาชื่อผลิตภัณฑ์..." onkeyup="filterProducts()">
+                    </div>
             </div>
             <div class="picture">
                 <img src="/main/Image/main.jpg">
@@ -108,7 +117,7 @@
                 <label>ชื่อผลิตภัณฑ์:</label>
                 <input type="text" id="edit-name" required><br>
                 <label >ประเภทผลิตภัณฑ์:</label>
-                <select name="Category" id="Category">
+                <select name="Category" id="edit-Category">
                         <optgroup label="อาหาร">
                             <option value="driedfood">อาหารเเห้ง</option>
                             <option value="freshfood">อาหารสด</option>
