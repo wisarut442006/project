@@ -28,7 +28,7 @@ let products = [
         id: 1,
         name: "นมจืด",
         category: "freshfood",
-        expiryDate: "12/02/2026",
+        expiryDate: "2026-01-20",
         status: "normal",
         Image: "Image/milk.png"
     },
@@ -36,7 +36,7 @@ let products = [
         id: 2,
         name: "ยาพาราเซตามอล",
         category: "medicine",
-        expiryDate: "28/02/2026",
+        expiryDate: "2026-02-2",
         status: "expirysoon",
         Image: "Image/medicine.jpg"
     },
@@ -44,13 +44,13 @@ let products = [
         id:3,
         name: "บะหมี่กึ่งสำเร็จรูป",
         category: "driedfood",
-        expiryDate: "24/02/2026",
+        expiryDate: "2026-02-20",
         status: "expired",
         Image: "Image/noodle.jpg"
     }
 ];
 function calculateStatus(dateStr) {
-    const [day, month, year] = dateStr.split('/').map(Number);
+    const [year, month, day] = dateStr.split('-').map(Number);
     const expiryDate = new Date(year, month - 1, day);
     const today = new Date();
     today.setHours(0,0,0,0);
@@ -63,7 +63,7 @@ function calculateStatus(dateStr) {
     return "normal";
 }
 function calculateTimeLeft(dateStr) {
-    const [day, month, year] = dateStr.split('/').map(Number);
+    const [year, month, day] = dateStr.split('-').map(Number);
     const expiry = new Date(year, month - 1, day).getTime();
     const now = new Date().getTime();
     const diff = expiry - now;
@@ -83,9 +83,10 @@ function renderProducts(items) {
     productList.innerHTML = '';
 
     items.forEach(product => {
+        product.status = calculateStatus(product.expiryDate);
         const currentStatus = calculateStatus(product.expiryDate); 
         const card = document.createElement('div');
-        card.className = `product-card ${currentStatus}`; 
+        card.className = `product-card ${product.status}`; 
 
         let statusDot = "";
         if (currentStatus === "normal") statusDot = "<span style='color: #28a745;'>●</span>";
@@ -230,7 +231,7 @@ function updateAllCountdowns() {
         const product = products.find(p => p.id === productId);
 
         if (product) {
-            const [day, month, year] = product.expiryDate.split('/').map(Number);
+            const [year, month, day] = product.expiryDate.split('-').map(Number);
             const expiryTime = new Date(year, month - 1, day, 23, 59, 59).getTime();
             const now = new Date().getTime();
             const diff = expiryTime - now;
