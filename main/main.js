@@ -179,3 +179,6 @@ window.onclick = function(event) {
         closeModal();
     }
 }
+function btnback() {
+    window.location.href = "../home/home.html"
+}

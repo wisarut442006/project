@@ -6,6 +6,11 @@ body{
     margin: 0;
     padding: 0;
 }
+.btn-back{
+    max-width: 200px;
+    background-color: transparent;
+    border: none;
+}
 .logo img{
     max-width: 200px;
     margin-top: 0px;

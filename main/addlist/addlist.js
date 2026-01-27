@@ -31,3 +31,6 @@ function Back() {
 function Submit() {
     window.location.href = "../main.html"
 }
+function btnback() {
+    window.location.href = "../main.html"
+}

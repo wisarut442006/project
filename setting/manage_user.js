@@ -34,5 +34,7 @@ function editemail() {
 function confirm() {
     window.location.href = "../main/main.html";
 }
-
+function btnback() {
+    window.location.href = "../main/main.html"
+}
 document.addEventListener('DOMContentLoaded', displayUserData);

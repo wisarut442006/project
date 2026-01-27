@@ -6,6 +6,11 @@ body{
     margin: 0;
     padding: 0;
 }
+.btn-back{
+    max-width: 200px;
+    background-color: transparent;
+    border: none;
+}
 .logo img{
     max-width: 200px;
     margin-top: 0px;
@@ -27,23 +32,27 @@ h1{
     display: flex;
     margin: 0;
     padding: 0;
+    height: 90vh;
+    align-items: stretch;
 }
 .header .sidebar{
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
+    width: 200px; 
+    min-width: 200px;
+    height: 100%; 
+    border-right: 1px solid #001;
+    background-color: #fff;
 }
 .header .sidebar .profile{
-    display: flex;
+   display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #001;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding-top: 10%;
-    padding-bottom: 250%;
+    padding: 40px 0; 
+    flex-grow: 1;
+    border-left: 1px solid #001;
+    border-top: 1px solid #001;
 }
 .header .sidebar img{
     width: 150px;
@@ -60,9 +69,13 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid#001;
-    padding-bottom: 5vh;
-    padding-top: 5vh;
+    padding: 20px 0;
+    border-top: 1px solid #001;
+    border-left: 1px solid #001;
+    border-bottom:1px solid #001 ;
+    gap: 15px;
+    margin-top: auto;
+    
 }
 .header .top-menu{
     display: flex;
@@ -111,6 +124,8 @@ h1{
 }
 .main-content-area {
     flex: 1;
+    height: 100%;
+    overflow-y: auto;
 }
 .picture {
     width: 100%;
@@ -170,7 +185,6 @@ h1{
     border-top: 1px solid #eee;
 }
 
-/* คลาสสำหรับสั่งให้แสดงผลผ่าน JS */
 .setting-content.show {
     display: block;
 }
