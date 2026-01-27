@@ -232,7 +232,7 @@ function updateAllCountdowns() {
 
         if (product) {
             const [year, month, day] = product.expiryDate.split('-').map(Number);
-            const expiryTime = new Date(year, month - 1, day-1, 23, 59, 59).getTime();
+            const expiryTime = new Date(year, month - 1, day, 23, 59, 59).getTime();
             const now = new Date().getTime();
             const diff = expiryTime - now;
 
