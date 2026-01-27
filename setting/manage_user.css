@@ -1,0 +1,120 @@
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+.logo img{
+    max-width: 200px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+h1{
+    background-color: #ECFDEA;
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 50px;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box; 
+}
+.container {
+    flex: 1;             
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    background-color: #f9f9f9; 
+}
+
+.manage-box {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 650px;       
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+}
+.manage-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    gap: 15px;
+}
+.manage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#username:focus {
+    border-color: #4CAF50; 
+}
+
+.confirm-btn {
+    width: 100px;
+    height: 30px;
+    display: block;
+    margin: 30px auto;
+    transition: 0.3s ;
+    border-radius: 5px;
+}
+.confirm-btn:hover {
+    background: radial-gradient(circle farthest-corner at 10% 20%
+    , #31a035ad 8%,rgb(147, 251, 96) 100.2%);
+    transition: 0.5s;
+    color: rgb(0, 0, 0);
+    box-shadow:6px 6px 12px #1c6e3e;
+    border-radius: 5px ;
+    border-color: #1c6e3e;
+}
+.box p{
+    color: #666;
+}
+.data-text {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: transparent; 
+    display: block;
+}
+
+.manage-item span:first-child {
+    min-width: 100px;
+    font-weight: bold;
+    color: #555;
+}
+
+.manage-item:hover {
+    background-color: #fcfcfc;
+    border-color: #4CAF50;
+    transition: 0.3s;
+}
+.manage .edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s; 
+}
+.manage .edit:hover {
+    transform: scale(1.15); 
+}
+.box h2 {
+    text-align: center;
+    margin-bottom: 30px; 
+    color: #333;
+}

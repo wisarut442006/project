@@ -1,0 +1,25 @@
+function Check(){
+    var email = document.getElementById("Email").value;
+    var password = document.getElementById("Password").value;
+    var confirmpassword = document.getElementById("ConfirmPassword").value;
+    var Pattern = /^[a-zA-Z0-9]+@gmail\.com/;
+    if(email == ""){
+        alert("กรุณากรอก ที่อยู่ Email")
+        return;
+    }
+     if(!Pattern.test(email)) {
+        alert("สามารถกรอกได้เเค่ a-z,A-Z,0-9@gmail.comเท่านั้น! กรุณาลองอีกครั้ง");
+        return;
+    }
+    if(password == ""){
+        alert("กรุณากรอกรหัสผ่าน");
+        return ;
+    }
+    if(password != confirmpassword){
+        alert("รหัสผ่านไม่ตรงกัน");
+        return ;
+    }else {
+        window.location.href = "login.html";
+    }
+    
+}

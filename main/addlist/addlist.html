@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpiryMate</title>
+    <link rel="stylesheet" href="addlist.css">
+</head>
+<body>
+    <h1 class="logo">
+        <img src="../Image/Logo.png">
+    </h1>
+    <header class="header">
+        <div class="sidebar">
+        <div class="profile">
+            <img src="/main/Image/profile.jpg" >
+            <button onclick="Back()">Back</button>
+        </div>
+        <div class="menu">
+            <a href="home">Home</a>
+            <a href="contact">Contact</a>
+        </div>
+        </div>
+        <div class="main-content-area">
+            <div class="top-menu">
+                <div class="category-box">
+                    <span class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.8 10.7L11.3172 13.4109C11.7128 13.8369 12.3872 13.8369 12.7828 13.4109L15.3 10.7M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <select name="Category" id="Category">
+                        <option >Category</option>
+                        <optgroup label="อาหาร">
+                            <option value="dried_food">อาหารเเห้ง</option>
+                            <option value="freshfood">อาหารสด</option>
+                        </optgroup>
+                        <option value="medicine">ยา</option>
+                        <option value="household">ของใช้</option>
+                    </select>
+                </div>
+            </div>
+            <div class="photo-scan">
+                 <div class="preview" onclick="openFile()">
+                    <img id="previewimage" />
+                    <span id="phototext">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 8L7 8C4.79086 8 3 9.79086 3 12L3 17C3 19.2091 4.79086 21 7 21L19 21C21.2091 21 23 19.2091 23 17L23 12C23 9.79086 21.2091 8 19 8L17 8" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M10 13L12.2929 15.2929C12.6834 15.6834 13.3166 15.6834 13.7071 15.2929L16 13" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M13 15L13 3" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                </div>
+            <input type="file" id="photo_input" accept="image/*" hidden/>
+            <button type="button" class="Scan_barcode" onclick="openModal()">Scan Barcode</button>
+            </div>
+           
+            <div class="input-box">
+                <input type="text" id="Name" placeholder="กรอกชื่อผลิตภัณฑ์">
+                <input type="text" id="MFG" placeholder="กรอกวันที่ผลิตผลิตภัณฑ์">
+                <input type="text" id="EXP" placeholder="กรอกวันที่หมดอายุผลิตภัณฑ์">
+                <input type="text" id="Activate" placeholder="กรอกวันที่เปิดใช้งาน">
+            </div>
+            <div class="submit-wrapper">
+                <button type="button" class="submit" onclick="Submit()">Submit</button>
+            </div>
+            
+        </div>
+    </Header>
+    <div id="barcodeModal" class="modal">
+        <div class="Modal-content">
+            <div class="modal-box">
+                <div class="modal-header">
+                    <span>สเเกนบาร์โค้ด</span>
+                    <span class="close" onclick="closeModal()">x</span>
+                </div>
+                <p>สเเกนบาร์โค้ดจากกล้อง</p>
+                <img src="../Image/scan.jpg" class="barcode-preview">
+                <button type="button" class="camera">สเเกนบาร์โค้ด</button>
+                <button class="close-modal" onclick="closeModal()">ปิด</button>
+            </div>
+            <div class="modal-box">
+                <div class="modal-header">
+                    <span>อัพโหลดรูปบาร์โค้ด</span>
+                    <span class="close" onclick="closeModal()">x</span>
+                </div>
+                <p>อัพโหลดบาร์โค้ดจากเครื่อง</p>
+                <div class="upload-box">
+                    <p>เลือกรูปภาพ</p>
+                </div>
+            <button class="upload">อัพโหลดรูปบาร์โค้ด</button>
+            <button class="close-modal" onclick="closeModal()">ปิด</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="addlist.js"></script>
+</body>
+</html>

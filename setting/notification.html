@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpiryMate</title>
+    <link rel="stylesheet" href="notification.css">
+</head>
+<body>
+    <h1 class="logo">
+        <img src="../main/Image/Logo.png">
+    </h1>
+
+    <main class="container">
+        <div class="notification-box">
+            <div class="box">
+                <h2>ตั้งค่าการเเจ้งเตือน</h2>
+                <p>ExpiryMate อาจยังคงส่งการแจ้งเตือนที่สำคัญเกี่ยวกับบัญชีและเนื้อหาของคุณ นอกเหนือไปจากการตั้งค่าการแจ้งเตือนที่คุณเลือกไว้</p>
+                
+                <div class="notification-item">
+                    <span>เเจ้งเตือน 1 เดือนก่อนหมดอายุ</span>
+                    <label class="switch">
+                        <input type="checkbox" name="1month" id="noti_1month" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="notification-item">
+                    <span>เเจ้งเตือน 7 วันก่อนหมดอายุ</span>
+                    <label class="switch">
+                        <input type="checkbox" name="7day" id="noti_7day" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="notification-item">
+                    <span>เเจ้งเตือน 3 วันก่อนหมดอายุ</span>
+                    <label class="switch">
+                        <input type="checkbox" name="3day" id="noti_3day" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="notification-item">
+                    <span>เเจ้งเตือน 1 วันก่อนหมดอายุ</span>
+                    <label class="switch">
+                        <input type="checkbox" name="1day" id="noti_1day" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button class="confirm-btn" onclick="confirm()">ยืนยัน</button>
+            </div>
+        </div>
+    </main>
+    <script src="notification.js"></script>
+</body>
+</html>
