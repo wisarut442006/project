@@ -23,7 +23,7 @@ function addlist(){
     window.location.href = "/main/addlist/addlist.html"
 }
 
-const products = [
+let products = [
     {
         id: 1,
         name: "นมจืด",
@@ -36,7 +36,7 @@ const products = [
         id: 2,
         name: "ยาพาราเซตามอล",
         category: "medicine",
-        expiryDate: "30/01/2026",
+        expiryDate: "30/03/2026",
         status: "expirysoon",
         Image: "Image/medicine.jpg"
     },
@@ -49,35 +49,48 @@ const products = [
         Image: "Image/noodle.jpg"
     }
 ];
-function filterProducts() {
-    const selectedCategory = document.getElementById('Category').value;
-    const selectedStatus = document.getElementById('Status').value;
+function calculateStatus(dateStr) {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    const expiryDate = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
-    const filtered = products.filter(product => {
-        const matchCategory = (selectedCategory === "Category" || product.category === selectedCategory);
-        
-        const matchStatus = (selectedStatus === "Status" || product.status === selectedStatus);
+    const diffTime = expiryDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        return matchCategory && matchStatus;
-    });
-    renderProducts(filtered);
+    if (diffDays < 0) return "expired";
+    if (diffDays <= 7) return "expirysoon";
+    return "normal";
+}
+function calculateTimeLeft(dateStr) {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    const expiry = new Date(year, month - 1, day).getTime();
+    const now = new Date().getTime();
+    const diff = expiry - now;
+
+    if (diff < 0) return "หมดอายุแล้ว";
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return `เหลือเวลาอีก ${days} วัน`;
 }
 
 document.getElementById('Category').addEventListener('change', filterProducts);
 document.getElementById('Status').addEventListener('change', filterProducts);
 
 function renderProducts(items) {
-    const productList = document.getElementById('product-list')
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
+    
     productList.innerHTML = '';
 
     items.forEach(product => {
+        const currentStatus = calculateStatus(product.expiryDate); 
         const card = document.createElement('div');
-        card.className = `product-card ${product.status}`;
+        card.className = `product-card ${currentStatus}`; 
+
         let statusDot = "";
-        if (product.status === "normal") statusDot = "<span style='color: #28a745;'>●</span>";
-        else if (product.status === "expirysoon") statusDot = "<span style='color: #ffc107;'>●</span>";
-        else if (product.status === "expired") statusDot = "<span style='color: #dc3545;'>●</span>";
-        
+        if (currentStatus === "normal") statusDot = "<span style='color: #28a745;'>●</span>";
+        else if (currentStatus === "expirysoon") statusDot = "<span style='color: #ffc107;'>●</span>";
+        else if (currentStatus === "expired") statusDot = "<span style='color: #dc3545;'>●</span>";
 
         card.innerHTML = `
         <button class="btn-edit" onclick="editProduct(${product.id})">
@@ -86,16 +99,44 @@ function renderProducts(items) {
             <img src="${product.Image}" alt="${product.name}">
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <p>สถานะ: ${statusDot} ${product.status}</p>
+                <p>สถานะ: ${statusDot} ${currentStatus}</p>
                 <p>วันหมดอายุ: <strong>${product.expiryDate}</strong></p>
-                <p>00:00:00</p>
+                <p class="countdown" id="timer-${product.id}">กำลังคำนวณ...</p> 
             </div>
         `;
         productList.appendChild(card);
     });
+    updateAllCountdowns();
 }
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts(products);
+    updateAllCountdowns();
+    setInterval(updateAllCountdowns, 1000);
+    
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+    const id = parseInt(document.getElementById('edit-id').value);
+    const index = products.findIndex(p => p.id === id);
+
+    if (index !== -1) {
+        products[index].name = document.getElementById('edit-name').value;
+        products[index].expiryDate = document.getElementById('edit-expiry').value;
+        products[index].Image = document.getElementById('edit-preview-img').getAttribute('src');
+        
+        products[index].status = calculateStatus(products[index].expiryDate);
+
+        const categorySelectEdit = document.getElementById('edit-Category');
+        if(categorySelectEdit) products[index].category = categorySelectEdit.value;
+
+        closeModal();
+        filterProducts(); 
+        alert("อัปเดตข้อมูลสำเร็จ!"); 
+    }
+    
+    
+
+   
+});
 });
 function editProduct(id) {
     const product = products.find(p => p.id === id);
@@ -104,7 +145,7 @@ function editProduct(id) {
         document.getElementById('edit-name').value = product.name;
         document.getElementById('edit-expiry').value = product.expiryDate;
 
-        const categorySelectEdit = document.getElementById('edit-category');
+        const categorySelectEdit = document.getElementById('edit-Category');
         if(categorySelectEdit) categorySelectEdit.value = product.category;
 
         document.getElementById('edit-preview-img').src = product.Image;
@@ -115,11 +156,10 @@ function handleFileSelect(event) {
     const file = event.target.files[0]; 
     if (file) {
         const reader = new FileReader();
-        
         reader.onload = function(e) {
-            document.getElementById('edit-preview-img').src = e.target.result;
+            const previewImg = document.getElementById('edit-preview-img');
+            previewImg.src = e.target.result; 
         };
-        
         reader.readAsDataURL(file); 
     }
 }
@@ -132,52 +172,10 @@ function closeModal() {
     document.getElementById('editModal').style.display = "none";
 }
 
-document.getElementById('editForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
 
-    const id = parseInt(document.getElementById('edit-id').value);
-    const updatedName = document.getElementById('edit-name').value;
-    const updatedExpiry = document.getElementById('edit-expiry').value;
-    const updatedImage = document.getElementById('edit-preview-img').src;
 
-    const index = products.findIndex(p => p.id === id);
-    if (index !== -1) {
-        products[index].name = updatedName;
-        products[index].expiryDate = updatedExpiry;
-        products[index].Image = updatedImage;
-        
-        const categorySelect = document.querySelector('#editModal select');
-        if(categorySelect) products[index].category = categorySelect.value;
-
-        renderProducts(products);
-        closeModal();
-        alert("อัปเดตข้อมูลสำเร็จ!");
-    }
-});
-
-window.onclick = function(event) {
-    const modal = document.getElementById('editModal');
-    if (event.target == modal) {
-        closeModal();
-    }
-}
 function opensetting() {
     document.getElementById("setting-dropdown").classList.toggle("show");
-}
-window.onclick = function(event) {
-    if (!event.target.closest('.btn-setting')) {
-        var dropdowns = document.getElementsByClassName("setting-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-    const modal = document.getElementById('editModal');
-    if (event.target == modal) {
-        closeModal();
-    }
 }
 function btnback() {
     window.location.href = "../home/home.html"
@@ -197,4 +195,61 @@ function filterProducts() {
     });
     
     renderProducts(filtered);
+}
+window.onclick = function(event) {
+    if (!event.target.closest('.btn-setting')) {
+        const dropdowns = document.getElementsByClassName("setting-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            if (dropdowns[i].classList.contains('show')) {
+                dropdowns[i].classList.remove('show');
+            }
+        }
+    }
+    const modal = document.getElementById('editModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+function deleteProduct() {
+    const id = parseInt(document.getElementById('edit-id').value);
+    const productName = document.getElementById('edit-name').value;
+
+    if (confirm(`คุณต้องการลบรายการ "${productName}" ใช่หรือไม่?`)) {
+        products = products.filter(p => p.id !== id);
+        
+        filterProducts();
+        closeModal();
+    }
+}
+function updateAllCountdowns() {
+    const countdownElements = document.querySelectorAll('.countdown');
+    
+    countdownElements.forEach(el => {
+        const productId = parseInt(el.id.replace('timer-', ''));
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            const [day, month, year] = product.expiryDate.split('/').map(Number);
+            const expiryTime = new Date(year, month - 1, day, 23, 59, 59).getTime();
+            const now = new Date().getTime();
+            const diff = expiryTime - now;
+
+            if (isNaN(expiryTime) || diff <= 0) {
+                el.innerHTML = "<span style='color:red; font-weight:bold;'>หมดเวลาแล้ว!</span>";
+            } else {
+
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const hours = h.toString().padStart(2, '0');
+                const minutes = m.toString().padStart(2, '0');
+                const seconds = s.toString().padStart(2, '0');
+                
+                el.innerText = `${d} วัน ${hours}:${minutes}:${seconds}`;
+            }
+        }
+    });
 }
