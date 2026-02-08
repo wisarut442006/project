@@ -22,33 +22,18 @@ statusSelect.addEventListener('blur', () => {
 function addlist(){
     window.location.href = "/main/addlist/addlist.html"
 }
-
-let products = [
-    {
-        id: 1,
-        name: "นมจืด",
-        category: "freshfood",
-        expiryDate: "2026-01-20",
-        status: "normal",
-        Image: "Image/milk.png"
-    },
-    {
-        id: 2,
-        name: "ยาพาราเซตามอล",
-        category: "medicine",
-        expiryDate: "2026-02-2",
-        status: "expirysoon",
-        Image: "Image/medicine.jpg"
-    },
-    {
-        id:3,
-        name: "บะหมี่กึ่งสำเร็จรูป",
-        category: "driedfood",
-        expiryDate: "2026-02-20",
-        status: "expired",
-        Image: "Image/noodle.jpg"
+let products = [];
+async function fetchProductsFromDB() {
+    try {
+        const response = await fetch('/api/get-products');
+        const data = await response.json();
+        
+        products = [...data];   
+        filterProducts(); 
+    } catch (error) {
+        console.error("Error fetching products:", error);
     }
-];
+}
 function calculateStatus(dateStr) {
     const [year, month, day] = dateStr.split('-').map(Number);
     const expiryDate = new Date(year, month - 1, day);
@@ -83,10 +68,11 @@ function renderProducts(items) {
     productList.innerHTML = '';
 
     items.forEach(product => {
-        product.status = calculateStatus(product.expiryDate);
         const currentStatus = calculateStatus(product.expiryDate); 
         const card = document.createElement('div');
-        card.className = `product-card ${product.status}`; 
+        card.className = `product-card ${currentStatus}`; 
+
+        const displayImage = product.Image ? product.Image : 'Image/default-product.png';
 
         let statusDot = "";
         if (currentStatus === "normal") statusDot = "<span style='color: #28a745;'>●</span>";
@@ -94,13 +80,14 @@ function renderProducts(items) {
         else if (currentStatus === "expired") statusDot = "<span style='color: #dc3545;'>●</span>";
 
         card.innerHTML = `
-        <button class="btn-edit" onclick="editProduct(${product.id})">
-            <img src="Image/edit.jpg">
-        </button>
-            <img src="${product.Image}" alt="${product.name}">
+            <button class="btn-edit" onclick="editProduct(${product.id})">
+                <img src="Image/edit.jpg">
+            </button>
+            <img src="${displayImage}" alt="${product.name}">
             <div class="product-info">
                 <h3>${product.name}</h3>
                 <p>สถานะ: ${statusDot} ${currentStatus}</p>
+                <p>วันที่ผลิต: <strong>${product.mfgDate || '-'}</strong></p>
                 <p>วันหมดอายุ: <strong>${product.expiryDate}</strong></p>
                 <p class="countdown" id="timer-${product.id}">กำลังคำนวณ...</p> 
             </div>
@@ -110,40 +97,16 @@ function renderProducts(items) {
     updateAllCountdowns();
 }
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts(products);
-    updateAllCountdowns();
-    setInterval(updateAllCountdowns, 1000);
-
-    document.getElementById('editForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    const id = parseInt(document.getElementById('edit-id').value);
-    const index = products.findIndex(p => p.id === id);
-
-    if (index !== -1) {
-        products[index].name = document.getElementById('edit-name').value;
-        products[index].expiryDate = document.getElementById('edit-expiry').value;
-        products[index].Image = document.getElementById('edit-preview-img').getAttribute('src');
-        
-        products[index].status = calculateStatus(products[index].expiryDate);
-
-        const categorySelectEdit = document.getElementById('edit-Category');
-        if(categorySelectEdit) products[index].category = categorySelectEdit.value;
-
-        closeModal();
-        filterProducts(); 
-        alert("อัปเดตข้อมูลสำเร็จ!"); 
-    }
-    
-    
-
-   
-});
+    fetchProductsFromDB(); 
+    updateAllCountdowns()
+    setInterval(updateAllCountdowns, 1000); 
 });
 function editProduct(id) {
     const product = products.find(p => p.id === id);
     if (product) {
         document.getElementById('edit-id').value = product.id;
         document.getElementById('edit-name').value = product.name;
+        document.getElementById('edit-mfg').value = product.mfgDate || "";
         document.getElementById('edit-expiry').value = product.expiryDate;
 
         const categorySelectEdit = document.getElementById('edit-Category');
@@ -187,8 +150,11 @@ function filterProducts() {
     const searchQuery = document.getElementById('searchInput').value.toLowerCase(); 
 
     const filtered = products.filter(product => {
-        const matchCategory = (selectedCategory === "Category" || product.category === selectedCategory);
-        const matchStatus = (selectedStatus === "Status" || product.status === selectedStatus);
+        const matchCategory = (selectedCategory === "all" || String(product.category) === String(selectedCategory));
+        const currentStatus = calculateStatus(product.expiryDate);
+        const matchStatus = (selectedStatus === "Status" || currentStatus === selectedStatus);
+        
+
         
         const matchSearch = product.name.toLowerCase().includes(searchQuery);
 
@@ -253,4 +219,63 @@ function updateAllCountdowns() {
             }
         }
     });
+}
+
+
+async function saveProduct() {
+    const id = parseInt(document.getElementById('edit-id').value);
+
+    const updatedData = {
+        name: document.getElementById('edit-name').value,
+        mfgDate: document.getElementById('edit-mfg').value,
+        expiryDate: document.getElementById('edit-expiry').value,
+        category: document.getElementById('edit-Category').value,
+        Image: document.getElementById('edit-preview-img').src
+    };
+
+    try {
+        const response = await fetch(`/api/update-product/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            await fetchProductsFromDB();
+            closeModal();
+        } else {
+            alert("แก้ไขไม่สำเร็จ");
+        }
+
+    } catch (error) {
+        console.error("Update error:", error);
+    }
+}
+
+async function deleteProduct() {
+    const id = parseInt(document.getElementById('edit-id').value);
+    const productName = document.getElementById('edit-name').value;
+
+    if (confirm(`คุณต้องการลบรายการ "${productName}" ใช่หรือไม่?`)) {
+        try {
+            const response = await fetch(`/api/delete-product/${id}`, {
+                method: 'DELETE'
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("ลบรายการสำเร็จแล้ว");
+                await fetchProductsFromDB();
+                closeModal();
+            } else {
+                alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+            }
+        } catch (error) {
+            console.error("Delete error:", error);
+            alert("ไม่สามารถติดต่อเซิร์ฟเวอร์ได้");
+        }
+    }
 }

@@ -405,29 +405,48 @@ header .top-menu .search-box {
     padding: 12px;
     height: 48px;        
 }
+
+.btn-box {
+    display: flex;
+    gap: 10px;         
+    margin-top: 25px;  
+}
+
+
+.save-btn, .delete-btn {
+    flex: 1;           
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0;     
+}
+
+
 .save-btn {
-    width: 100%;
-    padding: 14px;
     background-color: #4CAF50;
     color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 25px;
 }
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+
 .delete-btn {
-    width: 100%;
-    padding: 14px;
-    background-color: #af4c4c;
+    background-color: #dc3545; 
     color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.save-btn:active, .delete-btn:active {
+    transform: scale(0.98);
 }
 .change-picture {
     display: flex;
