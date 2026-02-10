@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExpiryMate</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="history.css">
 </head>
 <body>
     <h1 class="logo">
         <button class="btn-back" onclick="btnback()">
-            <img src="Image/Logo.png">
+            <img src="../Image/Logo.png">
         </button>
         
         <button class="btn-setting" onclick="opensetting()">
@@ -19,7 +19,7 @@
             </svg>
         </button>
         <div id="setting-dropdown" class="setting-content">
-            <a href="../setting/manage_user.html">
+            <a href="../../setting/manage_user.html">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="2" width="16" height="20" rx="4" stroke="#717171" stroke-width="1.5"/>
                 <path d="M8 7H16" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
@@ -28,7 +28,7 @@
                 </svg>
                 ข้อมูลส่วนตัว
             </a>
-            <a href="../setting/notification.html">
+            <a href="../../setting/notification.html">
                 <svg width="15" height="15" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M33.75 0.75L33.75 0H33.75V0.75ZM40.75 7.75H41.5V7.75H40.75ZM45.75 28.9561L46.5 28.9561V28.9561H45.75ZM39.5703 35.9502L39.654 36.6955V36.6955L39.5703 35.9502ZM23.25 37.0977V37.8477H23.25L23.25 37.0977ZM6.92969 35.9502L6.84598 36.6955H6.84598L6.92969 35.9502ZM0.75 28.9561H0V28.9561L0.75 28.9561ZM42.7109 23.0999L43.1431 22.487L42.7109 23.0999ZM33.75 0.75L33.75 1.5C37.2017 1.50005 40 4.29827 40 7.75H40.75H41.5C41.5 3.46982 38.0302 6.22869e-05 33.75 0L33.75 0.75ZM40.75 7.75H40V19.9295H40.75H41.5V7.75H40.75ZM42.7109 23.0999L42.2787 23.7128C43.9263 24.8747 45 26.7898 45 28.9561H45.75H46.5C46.5 26.2815 45.172 23.9177 43.1431 22.487L42.7109 23.0999ZM45.75 28.9561L45 28.956C45 32.1569 42.6458 34.8501 39.4866 35.2049L39.5703 35.9502L39.654 36.6955C43.5937 36.253 46.5 32.8986 46.5 28.9561L45.75 28.9561ZM39.5703 35.9502L39.4866 35.2049C34.7468 35.7372 28.2189 36.3476 23.25 36.3477L23.25 37.0977L23.25 37.8477C28.3089 37.8476 34.9081 37.2285 39.654 36.6955L39.5703 35.9502ZM23.25 37.0977V36.3477C18.2812 36.3477 11.7532 35.7372 7.01339 35.2049L6.92969 35.9502L6.84598 36.6955C11.5919 37.2285 18.1912 37.8477 23.25 37.8477V37.0977ZM6.92969 35.9502L7.0134 35.2049C3.85425 34.8501 1.50004 32.1569 1.5 28.956L0.75 28.9561L0 28.9561C4.6432e-05 32.8986 2.90632 36.253 6.84598 36.6955L6.92969 35.9502ZM0.75 28.9561H1.5C1.5 26.7898 2.57366 24.8746 4.22125 23.7128L3.78904 23.0999L3.35683 22.4869C1.3279 23.9176 1.78814e-07 26.2815 0 28.9561H0.75ZM5.75 19.9294H6.5V7.75H5.75H5V19.9294H5.75ZM5.75 7.75H6.5C6.5 4.29822 9.29822 1.5 12.75 1.5V0.75V0C8.46979 0 5 3.46979 5 7.75H5.75ZM12.75 0.75V1.5H33.75V0.75V0H12.75V0.75ZM3.78904 23.0999L4.22125 23.7128C5.37824 22.897 6.5 21.5918 6.5 19.9294H5.75H5C5 20.8836 4.33827 21.7949 3.35683 22.4869L3.78904 23.0999ZM40.75 19.9295H40C40 21.5918 41.1217 22.897 42.2787 23.7128L42.7109 23.0999L43.1431 22.487C42.1617 21.7949 41.5 20.8836 41.5 19.9295H40.75Z" fill="#717171"/>
                 <path d="M29.4999 42.1844C28.1563 43.7308 25.8586 44.7499 23.2499 44.7499C20.6412 44.7499 18.3436 43.7308 17 42.1844" stroke="#001" stroke-width="3" stroke-linecap="round"/>
@@ -36,18 +36,19 @@
                 ตั้งค่าการแจ้งเตือน
             </a>
             <hr>
-            <a href="../login/login.html" style="color: red;">ออกจากระบบ</a>
+            <a href="../../login/login.html" style="color: red;">ออกจากระบบ</a>
         </div>
     </h1>
     <header class="header">
         <div class="sidebar">
         <div class="profile">
             <img src="/main/Image/profile.jpg" >
-            <button class="btn-addlist" id="addlist" onclick="addlist()">+ เพิ่มรายการ</button>
-            
         </div>
         <div class="history-box">
-            <button class="history" id="history" onclick="history()">ประวัติการเเจ้งเตือน</button>
+            <button class="history" id="history" onclick="back()">หน้าหลัก</button>
+        </div>
+        <div class="clearHistory">
+            <button onclick="clearHistory()">ลบประวัติทั้งหมด</button>
         </div>
         <div class="menu">
             <a href="/home_contact/home.html">home</a>
@@ -55,121 +56,24 @@
         </div>
         </div>
         <div class="main-content-area">
-            <div class="top-menu">
-                <div class="category-box">
-                    <span class="icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.8 10.7L11.3172 13.4109C11.7128 13.8369 12.3872 13.8369 12.7828 13.4109L15.3 10.7M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </span>
-                    <select name="Category" id="Category">
-                        <option value="all">หมวดหมู่</option>
-                            <optgroup label="🍱 อาหารและเครื่องดื่ม">
-                            <option value="1">🥫 อาหารแห้ง/เครื่องปรุง</option>
-                            <option value="2">🥩 อาหารสด/แช่แข็ง</option>
-                            <option value="3">🥛 ผลิตภัณฑ์นม/ไข่</option>
-                            <option value="4">🥤 เครื่องดื่ม/ขนม</option>
-                        </optgroup>
-                        <optgroup label="🏠 ของใช้ในบ้าน">
-                            <option value="5">💊 ยา/เวชภัณฑ์</option>
-                            <option value="6">🧼 ของใช้ส่วนตัว/เครื่องสำอาง</option>
-                            <option value="7">🐶 สัตว์เลี้ยง</option>
-                        </optgroup>
-                    </select>
-                </div>
-            <div class="status-box">
-                <span class="icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.8 10.7L11.3172 13.4109C11.7128 13.8369 12.3872 13.8369 12.7828 13.4109L15.3 10.7M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                </span>
-                <select name="Status" id="Status">
-                <option >สถานะ</option>
-                <option value="normal" >🟢 ปกติ</option>
-                <option value="expirysoon" >🟡 ใกล้หมดอายุ</option>
-                <option value="expired" >🔴 หมดอายุ</option>
-            </select>
-            </div>
-            <div class="search-box">
-                    <span class="icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="11" cy="11" r="7" stroke="#717171" stroke-width="1.5"/>
-                    <path d="M20 20L16 16" stroke="#717171" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    </span>
-                    <input type="text" id="searchInput" placeholder="ค้นหาชื่อผลิตภัณฑ์..." onkeyup="filterProducts()">
-                    </div>
-            </div>
-            <div class="picture">
-                <img src="/main/Image/main.jpg">
-            </div>
-            <div class="product-list" id="product-list"></div>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>สินค้า</th>
+                    <th>ข้อความ</th>
+                    <th>สถานะ คงเหลือ (วัน)</th>
+                    <th>วันที่แจ้งเตือน</th>
+                    </tr>
+                    <tbody id="history-body">
+                        <!-- JS จะใส่ข้อมูลตรงนี้ -->
+                    </tbody>
+                </thead>
+            </table>
+
         </div>
     </Header>
     
-    <script src="main.js"></script>
-
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-                <h2>แก้ไขข้อมูลรายการ</h2>
-            <div class="edit-image-preview">
-                <div class="img-zome">
-                    <img id="edit-preview-img" src="" alt="Preview" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
-                    <div class="change-picture" >
-                        <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
-                        <button type="button" onclick="changepicture()">Change Picture</button>
-                    </div>
-                    </div>
-                <div class="activate-zone">
-                    <label>วันที่เปิดใช้งาน (ถ้ามี)</label>
-                    <label class="switch">
-                        <input type="checkbox" id="edit-hasActivate" onchange="toggleEditActivate()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-            
-            <form id="editForm">
-                <input type="hidden" id="edit-id">
-                <label>ชื่อผลิตภัณฑ์:</label>
-                <input type="text" id="edit-name" required><br>
-                <label >ประเภทผลิตภัณฑ์:</label>
-                <select name="Category" id="edit-Category">
-                        <optgroup label="🍱 อาหารและเครื่องดื่ม">
-                            <option value="1">🥫 อาหารแห้ง/เครื่องปรุง</option>
-                            <option value="2">🥩 อาหารสด/แช่แข็ง</option>
-                            <option value="3">🥛 ผลิตภัณฑ์นม/ไข่</option>
-                            <option value="4">🥤 เครื่องดื่ม/ขนม</option>
-                        </optgroup>
-                        <optgroup label="🏠 ของใช้ในบ้าน">
-                            <option value="5">💊 ยา/เวชภัณฑ์</option>
-                            <option value="6">🧼 ของใช้ส่วนตัว/เครื่องสำอาง</option>
-                            <option value="7">🐶 สินค้าสัตว์เลี้ยง</option>
-                        </optgroup>
-                    </select><br>
-                <label>วันที่ผลิต:</label>
-                <input type="date" id="edit-mfg"><br>
-                <label>วันหมดอายุ:</label>
-                <input type="date" id="edit-expiry" required><br>
-                <label>
-                <div id="edit-activate-box" style="display:none;">
-                    <label>วันที่เปิด:</label>
-                    <input type="date" id="edit-activateDate"><br>
-
-                <label>หมดอายุหลังเปิด (วัน):</label>
-                <input type="number" id="edit-expAfterActivate" min="1">
-                </div>
-
-                <div class="btn-box">
-                    <button type="button" class="save-btn" onclick="saveProduct()">บันทึกการแก้ไข</button>
-                    <button type="button" class="delete-btn" onclick="deleteProduct()">ลบรายการ</button>
-                </div>
-                
-            </form>
-        </div>
-    </div>
-    <div id="toast-container" class="toast-container"></div>
-
+    <script src="history.js"></script>
 </body>
 </html>

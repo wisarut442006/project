@@ -20,6 +20,7 @@ async function c_login(){
 
         if(data.success){
             localStorage.setItem('userRole',data.role);
+            localStorage.setItem("userEmail",data.email);
             localStorage.setItem('user_id', data.user_id);
             if(data.role == 'admin'){
                 alert("เข้าสู่ระบบฐานะ Admin");

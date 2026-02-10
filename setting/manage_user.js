@@ -1,26 +1,26 @@
-function confirm(){
-    const updatedName = document.getElementById('username').value;
-
-    alert("บันทึกข้อมูลใหม่: " + updatedName + " สำเร็จ!");
-    window.location.href = "../main/main.html"
-};
-const UserData = {
-    username: "User_ExpiryMate_01",
-    password: "123456",
-    email: "test_user@gmail.com"
-};
-
+function maskEmail(email) {
+    if (!email) return "";
+    if (email.length <= 4) return email;
+    
+    const firstTwo = email.slice(0, 4);
+    const masked = "*".repeat(email.length - 4);
+    return firstTwo + masked;
+}
 function displayUserData() {
     const usernameShow = document.getElementById('username-display');
     const passwordShow = document.getElementById('password-display');
     const emailShow = document.getElementById('email-display');
 
-    if (usernameShow) usernameShow.textContent = UserData.username;
+    const username = localStorage.getItem("username");
+    const email = localStorage.getItem("userEmail");
+
+    if (usernameShow && username) usernameShow.textContent = username;
     
     if (passwordShow) passwordShow.textContent = "********"; 
     
-    if (emailShow) emailShow.textContent = UserData.email;
+    if (emailShow && email) emailShow.textContent = maskEmail(email);
 }
+
 function editusername() {
     window.location.href = "edit/editusername.html"
 }
@@ -30,9 +30,8 @@ function editpassword() {
 function editemail() {
     window.location.href = "edit/editemail.html"
 }
-
-function confirm() {
-    window.location.href = "../main/main.html";
+function enter() {
+    window.location.href = "../main/main.html"
 }
 function btnback() {
     window.location.href = "../main/main.html"

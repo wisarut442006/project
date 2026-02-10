@@ -32,22 +32,34 @@ function Back() {
 async function Submit() {
     const userId = localStorage.getItem('user_id'); 
     const categoryId = document.getElementById("Category").value;
+    
+    // 1. แก้ไขเงื่อนไขการตรวจสอบหมวดหมู่ให้ตรงกับ HTML
     if (!userId) {
         alert("กรุณาเข้าสู่ระบบก่อนทำรายการ");
         return;
     }
-    if (categoryId === "" || categoryId === "Category") {
+    if (categoryId === "" || categoryId === "หมวดหมู่ทั้งหมด") {
         alert("กรุณาเลือกหมวดหมู่สินค้าก่อนบันทึก");
         return;
     }
 
     const formData = new FormData();
     formData.append('user_id', userId);
-    formData.append('category_id', document.getElementById("Category").value);
+    formData.append('category_id', categoryId);
     formData.append('name', document.getElementById("Name").value);
     formData.append('mfg', document.getElementById("MFG").value);
-    formData.append('exp', document.getElementById("EXP").value);
-    formData.append('activate', document.getElementById("Activate").value);
+    
+    const useActivate = document.getElementById('useActivate').checked;
+    
+    if (useActivate) {
+        formData.append('exp', ""); 
+        formData.append('activate', document.getElementById("ActivateInput").value);
+        formData.append('activate_exp', document.getElementById("ActivateExp").value);
+    } else {
+        formData.append('exp', document.getElementById("EXP").value);
+        formData.append('activate', "");
+        formData.append('activate_exp', "");
+    }
 
     const productImage = document.getElementById('photo_input').files[0];
     if (productImage) {
@@ -86,5 +98,25 @@ categoryBox.addEventListener('click', function() {
 document.addEventListener('click', function(e) {
     if (!categoryBox.contains(e.target)) {
         categoryBox.classList.remove('active');
+    }
+});
+document.getElementById('useActivate').addEventListener('change', function() {
+    const activateSection = document.getElementById('activateSection');
+    const expSection = document.getElementById('expSection');
+    const activateInput = document.getElementById('ActivateInput');
+    const activateExp = document.getElementById('ActivateExp');
+    const expInput = document.getElementById('EXP');
+
+    if (this.checked) {
+        // เมื่อเปิดใช้งาน (Switch On)
+        activateSection.style.display = "flex";
+        expSection.style.display = "none";
+    } else {
+        // เมื่อปิดใช้งาน (Switch Off)
+        activateSection.style.display = "none";
+        expSection.style.display = "flex";
+        
+        activateInput.value = "";
+        activateExp.value = "";
     }
 });

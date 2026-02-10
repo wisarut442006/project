@@ -46,6 +46,13 @@
                         </optgroup>
                     </select>
                 </div>
+                <div class="switch-box">
+                    <span>วันที่เปิดใช้งาน (ถ้ามี)</span>
+                    <label class="switch">
+                        <input type="checkbox"id="useActivate" >
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
             <div class="photo-scan">
                  <div class="preview" onclick="openFile()">
@@ -62,15 +69,23 @@
             <button type="button" class="Scan_barcode" onclick="openModal()">กรอกข้อมูลอัตโนมัติ</button>
             </div>
            
-            <div class="input-box">
+            <div class="input-box" >
                 <label >กรอกชื่อผลิตภัณฑ์</label>
                 <input type="text" id="Name" placeholder="กรอกชื่อผลิตภัณฑ์">
                 <label >กรอกวันที่ผลิตผลิตภัณฑ์:</label>
                 <input type="date" id="MFG" >
-                <label >กรอกวันที่หมดอายุผลิตภัณฑ์:</label>
-                <input type="date" id="EXP" >
-                <label>กรอกวันที่เปิดใช้งาน:</label>
-                <input type="date" id="Activate" >
+                <div id="expSection">
+                    <label>กรอกวันที่หมดอายุผลิตภัณฑ์:</label>
+                    <input type="date" id="EXP">
+                </div>
+                
+                <div id="activateSection" style="display: none; flex-direction: column;">
+                    <label>กรอกวันที่เปิดใช้งาน:</label>
+                    <input type="date" id="ActivateInput" >
+                    <label>กรอกจำนวนวันที่ใช้งานได้หลังเปิดใช้งาน:</label>
+                    <input type="text" id="ActivateExp" placeholder="กรอกตัวเลข เช่น 1">
+                </div>
+                
             </div>
             <div class="submit-wrapper">
                 <button type="button" class="submit" onclick="Submit()">Submit</button>
