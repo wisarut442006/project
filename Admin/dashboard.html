@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    aa
+
+<h2>Admin - Manage Users</h2>
+<div class="table-container">
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <!-- JS จะมาใส่ข้อมูลตรงนี้ -->
+    <tbody id="userTable"></tbody>
+</table>
+</div>
+
+
+<script src="admin.js"></script>
 </body>
 </html>

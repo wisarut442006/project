@@ -1,0 +1,98 @@
+body {
+  background: #f4f6f9;
+  min-height: 100vh;
+  padding: 30px;
+}
+h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #333;
+}
+.table-container {
+  background: #fff;
+  border: 2px solid #001;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #dcdcdc;
+}
+thead {
+  background: #2f80ed;
+  color: #fff;
+  
+}
+th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  border-right: 1px solid rgba(255,255,255,0.3);
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+  border-right: 1px solid #e0e0e0;
+}
+tbody tr:hover {
+  background: #f2f7ff;
+}
+td:nth-child(5) {
+  font-weight: 600;
+}
+button {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+button[onclick^="banUser"] {
+  background: #e74c3c;
+  color: white;
+}
+button[onclick^="banUser"]:hover {
+  background: #c0392b;
+}
+button[onclick^="unbanUser"] {
+  background: #27ae60;
+  color: white;
+}
+
+button[onclick^="unbanUser"]:hover {
+  background: #1e8449;
+}
+.status {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: lowercase;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status.active {
+  color: #27ae60;
+}
+
+.status.active .dot {
+  background: #27ae60;
+}
+
+.status.banned {
+  color: #e74c3c;
+}
+
+.status.banned .dot {
+  background: #e74c3c;
+}

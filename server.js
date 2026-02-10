@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, '/login')));
 app.use(express.static(path.join(__dirname, '/home_contact')));
 app.use(express.static(path.join(__dirname, '/setting')));
 app.use(express.static(path.join(__dirname, '/main')));
+app.use(express.static(path.join(__dirname, '/Admin')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -74,7 +75,7 @@ app.post('/api/login', (req, res) => {
             if (user.status === 'banned') {
                 return res.json({ 
                     success: false, 
-                    message: `บัญชีของคุณถูกระงับการใช้งาน! เหตุผล: ${user.ban_reason || 'ไม่ได้ระบุ'}` 
+                    message: `บัญชีของคุณถูกระงับการใช้งาน!` 
                 });
             }
             res.json({ 
@@ -456,6 +457,48 @@ app.delete("/notification-log/clear/:userId", (req, res) => {
       deleted: result.affectedRows
     });
   });
+});
+app.get('/api/admin/users', (req, res) => {
+    pool.query(
+        "SELECT id, username, email, role, status FROM userdata",
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false });
+            }
+            res.json(results);
+        }
+    );
+});
+app.put('/api/admin/ban-user/:id', (req, res) => {
+    const userId = req.params.id;
+
+    pool.query(
+        "UPDATE userdata SET status='banned' WHERE id=?",
+        [userId],
+        (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false });
+            }
+            res.json({ success: true });
+        }
+    );
+});
+app.put('/api/admin/unban-user/:id', (req, res) => {
+    const userId = req.params.id;
+
+    pool.query(
+        "UPDATE userdata SET status='active' WHERE id=?",
+        [userId],
+        (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ success: false });
+            }
+            res.json({ success: true });
+        }
+    );
 });
 
 
