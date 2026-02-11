@@ -6,13 +6,16 @@ const fs = require('fs');
 
 
 const app = express();
-const port = 3000;
+
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'expiry',
-    password: '1234',
-    database: 'user',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 const nodemailer = require('nodemailer');
