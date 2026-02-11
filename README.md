@@ -31,7 +31,7 @@ Repeat Password: 1234
 2.8 เข้าด้วย session ใหม่  
 ``` 
 User : expiry
-From host : localhost
+hostname : localhost
 Password: 1234
 
 ```  
