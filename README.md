@@ -12,7 +12,7 @@
 npm i
 
 ```
-2.ขั้นตอนการ import ฐานข้อมูล 
+2.ขั้นตอนการ import ฐานข้อมูล  
     2.1 Dowload project.sql  
     2.2 เปิดโปรเเกรม Heidisql เข้า session User = root password = "" ก่อน  
     2.3 เเล้ว load project.sql เเล้วกด Execute (F9)  
