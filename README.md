@@ -26,10 +26,10 @@ Repeat Password: 1234
 
 ```  
 
-2.6 add object เลือก database user
-2.7 เข้า Heidisql ใหม่เเละเพิ่มsession ใหม่ด้วย user account ที่พึ่งเพิ่มเข้ามา (เลือก database เป็น user ทำหรือไม่ทำก็ได้)
-2.8 เข้าด้วย session ใหม่
-3.run website
+2.6 add object เลือก database user  
+2.7 เข้า Heidisql ใหม่เเละเพิ่มsession ใหม่ด้วย user account ที่พึ่งเพิ่มเข้ามา (เลือก database เป็น user ทำหรือไม่ทำก็ได้)  
+2.8 เข้าด้วย session ใหม่  
+3.run website  
 
 ``` 
 npm run dev
