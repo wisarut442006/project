@@ -58,6 +58,8 @@ npm install
 | mysql2 | ^3.16.1 | ตัวเชื่อมต่อฐานข้อมูล MySQL/MariaDB |
 | multer | ^2.0.2 | จัดการอัปโหลดไฟล์ (รูปภาพสินค้า) |
 | nodemailer | ^8.0.1 | ส่งอีเมล (สำหรับระบบ OTP) |
+| dotenv | ^16.4.5 | โหลดค่าตัวแปรจากไฟล์ `.env`  |
+ 
 
 ---
 
@@ -190,16 +192,17 @@ http://localhost:3000
 
 ```
 project/
-├── home_contact/       # หน้าแรกและหน้าติดต่อ
+├── Admin/              # ส่วนจัดการของ Admin
+├── home_contact/       # หน้าแรกและหน้าติดต่อเรา
 ├── login/              # หน้าเข้าสู่ระบบ / สมัครสมาชิก / รีเซ็ตรหัสผ่าน
 ├── main/               # หน้าหลัก (แสดงรายการสินค้า / เพิ่มสินค้า / ประวัติ)
-├── setting/            # ตั้งค่าผู้ใช้ / การแจ้งเตือน
-├── Admin/              # หน้าจัดการผู้ใช้สำหรับ Admin
+├── setting/            # หน้าตั้งค่าบัญชีและการแจ้งเตือน
 ├── uploads/            # โฟลเดอร์เก็บรูปภาพสินค้า
-├── server.js           # Backend API (Express.js)
-├── package.json        # รายการ dependencies
-├── project.sql         # ไฟล์ SQL สำหรับสร้างฐานข้อมูลพร้อมข้อมูลตัวอย่าง
-└── README.md           # ไฟล์นี้
+├── public/             # Static files (ถ้ามี)
+├── server.js           # Main Backend Server File
+├── project.sql         # SQL สำหรับสร้างฐานข้อมูล
+├── package.json        # Dependencies List
+└── .env                # Environment Configuration
 ```
 
 ---
