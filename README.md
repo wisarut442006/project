@@ -131,6 +131,61 @@ http://localhost:3000
 
 ---
 
+### 🔐 Authentication (การยืนยันตัวตน)
+
+| Method | Endpoint | Body | คำอธิบาย |
+|:---:|---|---|---|
+| POST | `/api/register` | `{ email, password }` | สมัครสมาชิก |
+| POST | `/api/login` | `{ email, password }` | เข้าสู่ระบบ → ส่ง `{ success, role, user_id, email }` |
+| POST | `/api/send-otp` | `{ email }` | สร้างรหัส OTP (หมดอายุ 5 นาที) |
+| POST | `/api/verify-otp` | `{ email, otp }` | ยืนยันรหัส OTP |
+| POST | `/api/update-password` | `{ email, newPassword }` | รีเซ็ตรหัสผ่าน |
+
+---
+
+### 📦 Products (สินค้า)
+
+| Method | Endpoint | Body / Params | คำอธิบาย |
+|:---:|---|---|---|
+| POST | `/api/add-product` | FormData: `user_id, category_id, name, mfg, exp, activate, activate_exp, product_image` | เพิ่มสินค้าใหม่ (รองรับอัปโหลดรูป) |
+| GET | `/api/get-products` | — | ดึงรายการสินค้าทั้งหมด (อัปเดตสถานะอัตโนมัติ) |
+| PUT | `/api/update-product/:id` | `{ name, mfgDate, expiryDate, category, Image, activateDate, expAfterActivate, isActivated }` | แก้ไขข้อมูลสินค้า |
+| DELETE | `/api/delete-product/:id` | — | ลบสินค้าตาม ID |
+
+---
+
+### 👤 Users (ผู้ใช้งาน)
+
+| Method | Endpoint | Body / Params | คำอธิบาย |
+|:---:|---|---|---|
+| GET | `/api/user/:email` | Param: `email` | ดึงข้อมูลผู้ใช้ → `{ email, password, username }` |
+| PUT | `/api/update-user` | `{ id, username }` | อัปเดตชื่อผู้ใช้ |
+| POST | `/api/update-email` | `{ oldEmail, newEmail }` | เปลี่ยนอีเมล |
+
+---
+
+### 🔔 Notifications (แจ้งเตือน)
+
+| Method | Endpoint | Body / Params | คำอธิบาย |
+|:---:|---|---|---|
+| POST | `/api/save-notification-setting` | `{ user_id, days }` | บันทึกตั้งค่าแจ้งเตือน (จำนวนวันก่อนหมดอายุ) |
+| GET | `/api/notification-setting/:user_id` | Param: `user_id` | ดึงค่าตั้งค่าแจ้งเตือน (default: 7 วัน) |
+| POST | `/add-notification-log` | `{ user_id, product_id, message, type }` | บันทึกประวัติแจ้งเตือน |
+| GET | `/notification-log/:user_id` | Param: `user_id` | ดึงประวัติแจ้งเตือนทั้งหมด |
+| DELETE | `/notification-log/clear/:userId` | Param: `userId` | ลบประวัติแจ้งเตือนทั้งหมดของผู้ใช้ |
+
+---
+
+### 🛡️ Admin (ผู้ดูแลระบบ)
+
+| Method | Endpoint | Params | คำอธิบาย |
+|:---:|---|---|---|
+| GET | `/api/admin/users` | — | ดึงรายชื่อผู้ใช้ทั้งหมด |
+| PUT | `/api/admin/ban-user/:id` | Param: `id` | แบนผู้ใช้ (status → banned) |
+| PUT | `/api/admin/unban-user/:id` | Param: `id` | ปลดแบนผู้ใช้ (status → active) |
+
+---
+
 ## 📂 โครงสร้างโปรเจกต์
 
 ```
